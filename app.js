@@ -1,5 +1,4 @@
 var express = require('express'),
-  bodyParser = require('body-parser'),
   app = express(),
   multer  = require('multer'),
   exec = require('child_process').exec;
@@ -11,14 +10,6 @@ var cmd = 'mono /home/takayuki/tmp/Release/DetectionByNGLM.exe'
 app.set('view engine', 'jade');
 
 app.use(multer({ dest: './uploads/'}));
-
-// POSTデータをパースするミドルウェアを設定
-app.use(bodyParser.json({
-  extended: true
-}));
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
 
 app.get('/', function(req, res) {
   res.render('index', { stdout: '', stderr: '', error: '' });
